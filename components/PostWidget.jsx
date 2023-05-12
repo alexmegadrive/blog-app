@@ -1,21 +1,20 @@
-"use client";
+// "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import { getRecentPosts, getSimilarPosts } from "@/services";
+import { getRecentPosts, getSimilarPosts, getRelatedPosts } from "@/services";
 
-const PostWidget = ({ categories, slug }) => {
-  const [relatedPosts, setRelatedPosts] = useState([]);
-  useEffect(() => {
-    if (slug) {
-      getSimilarPosts(categories, slug).then((result) =>
-        setRelatedPosts(result)
-      );
-    } else {
-      getRecentPosts().then((result) => setRelatedPosts(result));
-    }
-  }, [slug]);
+const PostWidget = async ({ categories, slug }) => {
+  let relatedPosts = [];
+
+  if (slug) {
+    relatedPosts = await getSimilarPosts(categories, slug);
+  } else {
+    relatedPosts = await getRecentPosts();
+  }
+  //   }, [slug]);
+  // if (slug) {
   console.log("relatedPosts :", relatedPosts);
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 mb-8">

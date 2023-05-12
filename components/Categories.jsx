@@ -1,14 +1,19 @@
-"use client";
-import React, { useState, useEffect } from "react";
+// "use client";
+import React from "react";
 import Link from "next/link";
 import { getCategories } from "@/services";
 import { Space_Mono } from "next/font/google";
 
-const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    getCategories().then((newCategories) => setCategories(newCategories));
-  }, []);
+const getCategoriesData = async () => {
+  try {
+    return await getCategories();
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+const Categories = async () => {
+  const categories = await getCategoriesData();
 
   return (
     <>
