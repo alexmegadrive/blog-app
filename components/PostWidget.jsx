@@ -1,9 +1,7 @@
-// "use client";
-
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import { getRecentPosts, getSimilarPosts, getRelatedPosts } from "@/services";
+import { getRecentPosts, getSimilarPosts } from "@/services";
 
 const PostWidget = async ({ categories, slug }) => {
   let relatedPosts = [];
@@ -13,9 +11,7 @@ const PostWidget = async ({ categories, slug }) => {
   } else {
     relatedPosts = await getRecentPosts();
   }
-  //   }, [slug]);
-  // if (slug) {
-  console.log("relatedPosts :", relatedPosts);
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">

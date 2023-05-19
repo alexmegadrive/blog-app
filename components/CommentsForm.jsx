@@ -22,8 +22,6 @@ const CommentsForm = ({ slug }) => {
     const { value: name } = nameEl.current;
     const { value: email } = emailEl.current;
     const { checked: storeData } = storeDataEl.current;
-    // const storeData = storeData.current.value;
-    console.log("storeData :", storeData);
 
     if (!comment || !name || !email) {
       setError(true);
@@ -36,7 +34,6 @@ const CommentsForm = ({ slug }) => {
       slug,
     };
     if (typeof window !== "undefined") {
-      console.log("window :", window.localStorage);
       if (storeData) {
         window.localStorage.setItem("name", name);
         window.localStorage.setItem("email", email);

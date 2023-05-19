@@ -18,12 +18,8 @@ async function getPost(slug) {
   }
 }
 
-// const PostDetails = ({post, params}) => {
 const PostDetails = async ({ params }) => {
-  // console.log("params :", params);
-  // const post = await getPost(params.slug);
   const post = await getPost(params.slug);
-  console.log("post :", post);
   if (!post) {
     return (
       <h1 className="text-center text-xl text-white">
@@ -56,11 +52,3 @@ const PostDetails = async ({ params }) => {
 };
 
 export default PostDetails;
-
-// export async function generateStaticParams() {
-//   const posts = await getPostDetails();
-
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }));
-// }
